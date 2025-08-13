@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Pos?>
+
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+<StackPane xmlns:fx="http://javafx.com/fxml" fx:controller="controller.FormularioEditarController"
+           stylesheets="@../css/formulario_editar.css"
+           prefWidth="700" prefHeight="500" maxWidth="700">
+
+    <children>
+        <VBox spacing="15" alignment="CENTER" maxWidth="400" maxHeight="400" styleClass="login-box">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+
+            <Label text="Editar Objeto" style="-fx-font-size: 25px;" styleClass="titulo-principal" />
+
+            <TextField fx:id="campoNombre" prefWidth="300" promptText="Nombre"/>
+            <TextField fx:id="campoMarca" prefWidth="300" promptText="Marca"/>
+            <TextField fx:id="campoColor" prefWidth="300" promptText="Color"/>
+            <TextField fx:id="campoDescripcion" prefWidth="300" promptText="Descripción"/>
+
+            <ComboBox fx:id="estadoCombo" prefWidth="350">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="Nuevo"/>
+                        <String fx:value="En espera"/>
+                        <String fx:value="Archivado"/>
+                        <String fx:value="Entregado"/>
+                    </FXCollections>
+                </items>
+            </ComboBox>
+
+            <HBox spacing="15" alignment="CENTER">
+                <Button text="Guardar cambios" style="-fx-font-size: 15px;" onAction="#guardarCambios"/>
+                <Button text="Cancelar" style="-fx-font-size: 15px;" onAction="#cancelar"/>
+            </HBox>
+
+            <Label fx:id="mensajeLabel" />
+        </VBox>
+    </children>
+</StackPane>

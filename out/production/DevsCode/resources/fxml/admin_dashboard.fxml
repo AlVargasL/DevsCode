@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controller.AdminDashboardController"
+            stylesheets="@../css/admin_dashboard.css"
+            prefHeight="900" prefWidth="1400" maxWidth="1400">
+
+    <!-- Parte superior: título y botones -->
+    <top>
+        <VBox spacing="10" alignment="CENTER_LEFT" styleClass="top-bar">
+            <Label text="Objetos Perdidos | Administrador" style="-fx-font-size: 30px;" styleClass="titulo-principal"/>
+            <HBox spacing="10" alignment="CENTER_RIGHT">
+                <padding>
+                    <Insets top="10" right="10" bottom="10" left="10"/>
+                </padding>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button id="boton" style="-fx-font-size: 20px;" text="Cerrar sesión" onAction="#irLogout"/>
+            </HBox>
+        </VBox>
+    </top>
+
+    <center>
+        <VBox spacing="10">
+            <HBox alignment="CENTER_RIGHT">
+                <padding>
+                    <Insets bottom="10"/>
+                </padding>
+                <Button fx:id="btnVerObjeto" prefWidth="1150" prefHeight="100" text="Ver Objeto" style="-fx-font-size: 15px; -fx-background-color: #f5f5f5; -fx-text-fill: black; -fx-border-radius: 0; -fx-background-radius: 0;" onAction="#mostrarAdminDashboard"/>
+                <Button fx:id="btnAgregarObjeto" prefWidth="1150" prefHeight="100" text="Agregar Objeto" style="-fx-font-size: 15px; -fx-background-color: #dcdcdc; -fx-text-fill: black; -fx-border-radius: 0; -fx-background-radius: 0;" onAction="#mostrarFormularioAgregar" />
+                <Button fx:id="btnVerHistorial" prefWidth="1150" prefHeight="100" text="Ver Historial" style="-fx-font-size: 15px; -fx-background-color: #dcdcdc; -fx-text-fill: black; -fx-border-radius: 0; -fx-background-radius: 0;" onAction="#mostrarHistorial"/>
+                <Region HBox.hgrow="ALWAYS"/>
+            </HBox>
+            <StackPane fx:id="contentArea" VBox.vgrow="ALWAYS"/>
+        </VBox>
+    </center>
+</BorderPane>

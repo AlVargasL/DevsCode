@@ -1,0 +1,74 @@
+/* Fondo general */
+.stack-pane {
+    -fx-background-color: linear-gradient(to bottom right, #4A90E2, #50E3C2);
+    -fx-font-family: "Poppins";
+}
+
+/* Contenedor centrado con sombra */
+.login-box {
+    -fx-background-color: white;
+    -fx-padding: 30px;
+    -fx-spacing: 15px;
+    -fx-border-radius: 12px;
+    -fx-background-radius: 12px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 5);
+    -fx-border-color: #345177;
+    -fx-border-width: 1;
+}
+
+/* Título principal */
+.titulo-principal {
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+}
+
+/* Estilo para el TextField */
+.text-field {
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-padding: 6 10 6 10;
+    -fx-border-color: #bdc3c7;
+}
+
+.text-field:focused {
+    -fx-border-color: #3498db;
+    -fx-effect: dropshadow(three-pass-box, rgba(52,152,219,0.5), 5, 0, 0, 0);
+}
+
+/* Botones */
+.button {
+    -fx-background-color: #2AAD90;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 10px;
+    -fx-background-radius: 6px;
+    -fx-cursor: hand;
+    -fx-border: none;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.15), 4, 0, 0, 2);
+}
+
+.button:hover {
+    -fx-background-color: #228F77;
+}
+
+/* Labels generales */
+.label {
+    -fx-font-size: 13px;
+    -fx-text-fill: #555555;
+}
+
+/* Mensaje positivo */
+#mensajeLabel {
+    -fx-text-fill: green;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+}
+
+/* Imagen previsualización */
+.image-view {
+    -fx-border-color: #ddd;
+    -fx-border-width: 1px;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+}
