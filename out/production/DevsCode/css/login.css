@@ -1,0 +1,66 @@
+/* Archivo: estilo-login.css */
+
+.anchor-pane {
+    -fx-background-color: linear-gradient(to bottom right, #4A90E2, #50E3C2);
+}
+
+.v-box {
+    -fx-background-color: white;
+    -fx-padding: 30px;
+    -fx-spacing: 15px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 5);
+}
+
+/* Título principal */
+.titulo-principal {
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+}
+
+/* TextFields y PasswordFields */
+.text-field, .password-field {
+    -fx-font-size: 14px;
+    -fx-padding: 10px;
+    -fx-border-color: #ccc;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+/* Botón */
+.button {
+    -fx-background-color: #2AAD90;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 10px;
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+    -fx-border: none;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.15), 4, 0, 0, 2);
+}
+
+.button:hover {
+    -fx-background-color: #228F77;
+}
+
+/* Label de mensaje de error */
+.label {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+}
+
+/* Centrado con borde y fondo */
+.login-box {
+    -fx-background-color: white;
+    -fx-border-color: #345177;
+    -fx-border-width: 1;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 5);
+}
+
+#mensajeError {
+    -fx-text-fill: #D32F2F; /* rojo fuerte */
+}

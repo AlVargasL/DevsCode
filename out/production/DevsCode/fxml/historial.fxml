@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controller.HistorialController"
+            stylesheets="@../css/historial.css"
+            prefWidth="1400" prefHeight="900" maxWidth="1400">
+
+    <center>
+        <TableView maxHeight="600" maxWidth="1200" fx:id="tablaHistorial">
+            <columns>
+                <TableColumn fx:id="colNombre" id="colNombre" text="Nombre"/>
+                <TableColumn fx:id="colMarca" id="colMarca" text="Marca"/>
+                <TableColumn fx:id="colColor" id="colColor" text="Color"/>
+                <TableColumn fx:id="colAccion" text="Estado"/>
+                <TableColumn fx:id="colFecha" text="Fecha"/>
+            </columns>
+        </TableView>
+    </center>
+
+</BorderPane>

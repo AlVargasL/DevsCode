@@ -1,0 +1,18 @@
+<component name="libraryTable">
+  <library name="ojdbc17-full">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../ojdbc17-full/ojdbc17.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../ojdbc17-full/ons.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../ojdbc17-full/oraclepki.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../ojdbc17-full/ucp17.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../ojdbc17-full/simplefan.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../ojdbc17-full/rsi.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../ojdbc17-full/orai18n.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../ojdbc17-full/xmlparserv2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../ojdbc17-full/xmlparserv2_sans_jaxp_services.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../ojdbc17-full/xdb.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
