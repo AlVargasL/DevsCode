@@ -4,9 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4ad0e8c0-12ce-4e6d-a771-c91bc46e7f84" name="Changes" comment="test">
+    <list default="true" id="4ad0e8c0-12ce-4e6d-a771-c91bc46e7f84" name="Changes" comment="testDirectory">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DevsCode.iml" beforeDir="false" afterPath="$PROJECT_DIR$/DevsCode.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SOP/src/app/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/SOP/src/app/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SOP/src/controller/AdminDashboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/SOP/src/controller/AdminDashboardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SOP/src/controller/AdminTablaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/SOP/src/controller/AdminTablaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SOP/src/controller/FormularioAgregarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/SOP/src/controller/FormularioAgregarController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SOP/src/controller/FormularioEditarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/SOP/src/controller/FormularioEditarController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SOP/src/controller/HistorialController.java" beforeDir="false" afterPath="$PROJECT_DIR$/SOP/src/controller/HistorialController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SOP/src/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/SOP/src/controller/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SOP/src/controller/UserViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/SOP/src/controller/UserViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SOP/src/model/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/SOP/src/model/Admin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SOP/src/model/HistorialCambio.java" beforeDir="false" afterPath="$PROJECT_DIR$/SOP/src/model/HistorialCambio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SOP/src/model/ObjetoPerdido.java" beforeDir="false" afterPath="$PROJECT_DIR$/SOP/src/model/ObjetoPerdido.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SOP/src/util/DBUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/SOP/src/util/DBUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DevsCode/util/DBUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DevsCode/util/DBUtil.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -123,7 +136,15 @@
       <option name="project" value="LOCAL" />
       <updated>1755105780289</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="testDirectory">
+      <option name="closed" value="true" />
+      <created>1755105972952</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1755105972952</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -131,6 +152,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="test" />
-    <option name="LAST_COMMIT_MESSAGE" value="test" />
+    <MESSAGE value="testDirectory" />
+    <option name="LAST_COMMIT_MESSAGE" value="testDirectory" />
   </component>
 </project>
