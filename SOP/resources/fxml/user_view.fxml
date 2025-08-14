@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controller.UserViewController"
+            stylesheets="@../css/user_view.css"
+            prefHeight="900" prefWidth="1450" maxWidth="1450">
+
+    <top>
+        <VBox spacing="10" styleClass="top-bar">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+
+        <Label text="Objetos Perdidos | Usuario" style="-fx-font-size: 30px;" styleClass="titulo-principal"/>
+            <HBox spacing="10">
+                <TextField fx:id="txtBuscar" prefWidth="500" style="-fx-font-size: 15px;" promptText="Buscar objeto"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button id="boton" style="-fx-font-size: 20px;" text="Administrador" onAction="#irLogin"/>
+            </HBox>
+        </VBox>
+    </top>
+
+    <center>
+        <TableView maxHeight="600" maxWidth="1200"  fx:id="tablaObjetos">
+            <columns>
+                <TableColumn fx:id="colNombre" id="colNombre" text="Nombre"/>
+                <TableColumn fx:id="colMarca" id="colMarca" text="Marca"/>
+                <TableColumn fx:id="colColor" id="colColor" text="Color"/>
+                <TableColumn fx:id="colDescripcion" id="colDescripción" text="Descripción"/>
+                <TableColumn fx:id="colEstado" id="colEstado" text="Estado"/>
+            </columns>
+        </TableView>
+    </center>
+</BorderPane>

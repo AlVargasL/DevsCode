@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Pos?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+
+<StackPane xmlns:fx="http://javafx.com/fxml" fx:controller="controller.FormularioAgregarController"
+           stylesheets="@../css/formulario_agregar.css"
+           prefWidth="1450" prefHeight="900" maxWidth="1450">
+
+    <children>
+        <VBox spacing="15" alignment="CENTER" maxWidth="400" maxHeight="400" styleClass="login-box">
+            <Label text="Agregar nuevo objeto perdido" style="-fx-font-size: 25px;" styleClass="titulo-principal" />
+
+            <VBox>
+                <padding>
+                    <Insets left="0"/>
+                </padding>
+                <Label style="-fx-font-size: 15px;" text="Nombre:" maxWidth="300"/>
+                <TextField fx:id="nombreField" prefWidth="300"/>
+            </VBox>
+
+            <VBox>
+                <padding>
+                    <Insets left="0"/>
+                </padding>
+                <Label style="-fx-font-size: 15px;" text="Marca:" maxWidth="300"/>
+                <TextField fx:id="marcaField" prefWidth="300"/>
+            </VBox>
+
+            <VBox>
+                <padding>
+                    <Insets left="0"/>
+                </padding>
+                <Label style="-fx-font-size: 15px;" text="Color:" maxWidth="300"/>
+                <TextField fx:id="colorField" prefWidth="300"/>
+            </VBox>
+
+            <VBox>
+                <padding>
+                    <Insets left="0"/>
+                </padding>
+                <Label style="-fx-font-size: 15px;" text="Descripción:" maxWidth="300"/>
+                <TextField fx:id="descripcionField" prefWidth="300"/>
+            </VBox>
+
+
+
+            <ComboBox fx:id="estadoCombo" prefWidth="350" value="Nuevo">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="Nuevo"/>
+                    </FXCollections>
+                </items>
+            </ComboBox>
+
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Button text="Seleccionar Imagen" style="-fx-font-size: 15px;" onAction="#seleccionarImagen"/>
+                <Label fx:id="nombreImagenLabel" text="(Sin imagen)"/>
+            </HBox>
+
+            <ImageView fx:id="previewImagen" fitHeight="100" fitWidth="100" />
+
+            <Button text="Guardar Objeto" style="-fx-font-size: 15px;" onAction="#guardarObjeto" />
+            <Label fx:id="mensajeLabel" />
+        </VBox>
+    </children>
+</StackPane>

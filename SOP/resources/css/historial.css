@@ -1,0 +1,66 @@
+/* historial.css */
+
+/* Fondo general */
+.root {
+    -fx-background-color: #f5f5f5;
+    -fx-font-family: "Poppins";
+}
+
+/* Barra superior */
+.top-bar {
+    -fx-padding: 15;
+    -fx-background-color: #345177;
+}
+
+/* Título principal */
+.titulo-principal {
+    -fx-font-size: 20px;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 10 0 5 10;
+}
+
+/* Tabla */
+.table-view {
+    -fx-background-color: #f5f5f5;
+    -fx-border-color: transparent;
+    -fx-border-width: 1;
+    -fx-table-cell-border-color: #e0e0e0; /* ← Color de las líneas entre celdas */
+    -fx-table-header-border-color: #e0e0e0; /* ← Borde entre encabezados */
+    -fx-padding: 10;
+}
+
+.table-cell {
+    -fx-border-color: #e0e0e0; /* ← Borde individual de cada celda */
+    -fx-border-width: 0 1 1 0; /* arriba, derecha, abajo, izquierda */
+    -fx-border-style: solid;
+}
+
+/* Cabecera */
+.table-view .column-header-background {
+    -fx-background-color: #f5f5f5;
+}
+
+.table-view .column-header, .table-view .filler {
+    -fx-size: 35px;
+}
+
+.table-view .label {
+    -fx-text-fill: #333;
+    -fx-font-weight: bold;
+}
+
+.table-view .column-header,
+.table-view .column-header .label {
+    -fx-border-radius: 10px;
+    -fx-size: 50px;
+    -fx-background-color: #345177;
+    -fx-text-fill: white !important;
+    -fx-font-weight: bold;
+    -fx-alignment: CENTER;
+}
+
+/* Filas */
+.table-row-cell {
+    -fx-background-color: #EAEAEA;
+}

@@ -1,0 +1,44 @@
+# =====================
+# Archivos compilados
+# =====================
+*.class
+/out/
+/bin/
+/build/
+
+# =====================
+# Configuración de IntelliJ IDEA
+# =====================
+.idea/
+*.iml
+
+# =====================
+# Configuración de Eclipse
+# =====================
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings/
+.springBeans
+.sts4-cache
+
+# =====================
+# Configuración de NetBeans
+# =====================
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+# =====================
+# Configuración de VS Code
+# =====================
+.vscode/
+
+# =====================
+# Archivos del sistema
+# =====================
+.DS_Store
+Thumbs.db

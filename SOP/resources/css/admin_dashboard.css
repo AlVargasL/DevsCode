@@ -1,0 +1,92 @@
+/* admin-dashboard.css */
+
+/* Fondo general */
+.root {
+    -fx-background-color: #f5f5f5;
+    -fx-font-family: "Poppins";
+}
+
+/* Barra superior */
+.top-bar {
+    -fx-padding: 15;
+    -fx-background-color: #345177;
+}
+
+/* Título principal */
+.titulo-principal {
+    -fx-font-size: 20px;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 10 0 5 10;
+}
+
+/* Botones */
+.button {
+    -fx-cursor: hand;
+    -fx-background-color: #2AAD90;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5;
+    -fx-padding: 8 16;
+}
+
+/* Estilo para el TextField */
+.text-field {
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-padding: 6 10 6 10;
+    -fx-border-color: #bdc3c7;
+}
+
+.text-field:focused {
+    -fx-border-color: #3498db;
+    -fx-effect: dropshadow(three-pass-box, rgba(52,152,219,0.5), 5, 0, 0, 0);
+}
+
+.button:hover {
+    -fx-background-color: #228F77;
+}
+
+.table-view {
+    -fx-background-color: #f5f5f5;
+        -fx-border-color: transparent;
+        -fx-border-width: 1;
+        -fx-table-cell-border-color: #e0e0e0; /* ← Color de las líneas entre celdas */
+        -fx-table-header-border-color: #e0e0e0; /* ← Borde entre encabezados */
+        -fx-padding: 10;
+}
+
+.table-view .column-header-background {
+    -fx-background-radius: 10px 10px 0 0;
+    -fx-border-radius: 10px 10px 0 0;
+}
+
+.table-view .column-header,
+.table-view .column-header .label {
+    -fx-border-radius: 10px;
+    -fx-size: 50px;
+    -fx-background-color: #345177;
+    -fx-text-fill: white !important;
+    -fx-font-weight: bold;
+    -fx-alignment: CENTER;
+}
+
+.table-view .table-row-cell {
+    -fx-border-color: transparent;
+    -fx-background-color: transparent;
+    -fx-transition: background-color 0.3s ease;
+}
+
+.table-view .table-row-cell:hover {
+    -fx-background-color: #dcdcdc; /* Azul claro al pasar el mouse */
+}
+
+.table-view .table-cell {
+    -fx-border-color: transparent;
+    -fx-padding: 8px;
+}
+
+.table-view .filler {
+    -fx-background-color: #002147;
+    -fx-background-radius: 0 10px 0 0;
+}
