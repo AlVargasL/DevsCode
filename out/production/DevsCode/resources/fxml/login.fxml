@@ -7,18 +7,38 @@
 <StackPane xmlns:fx="http://javafx.com/fxml"
            fx:controller="controller.LoginController"
            stylesheets="@../css/login.css"
-           prefWidth="1400" prefHeight="900" maxWidth="1400">
+           prefWidth="1450" prefHeight="900" maxWidth="1450">
 
     <children>
         <VBox alignment="CENTER" spacing="10" maxWidth="400" maxHeight="300" styleClass="login-box">
             <padding>
-                <Insets top="20" right="20" bottom="20" left="20"/>
+                <Insets top="25" right="20" bottom="20" left="20"/>
             </padding>
-            <Label text="Inicio de sesión" style="-fx-font-size: 25px;" styleClass="titulo-principal"/>
-            <TextField fx:id="correoField" style="-fx-font-size: 15px;" maxWidth="300" promptText="Correo electrónico" />
-            <PasswordField fx:id="contrasenaField" style="-fx-font-size: 15px;" maxWidth="300" promptText="Contraseña" />
+
+            <Label text="Inicio de sesión" style="-fx-font-size: 28px;" styleClass="titulo-principal"/>
+
+            <!-- Grupo Correo -->
+            <VBox alignment="CENTER_LEFT" spacing="5">
+                <padding>
+                    <Insets left="30"/>
+                </padding>
+                <Label style="-fx-font-size: 15px;" text="Correo electrónico:" maxWidth="300"/>
+                <TextField fx:id="correoField" maxWidth="300"/>
+            </VBox>
+
+            <!-- Grupo Contraseña -->
+            <VBox alignment="CENTER_LEFT" spacing="5">
+                <padding>
+                    <Insets left="30"/>
+                </padding>
+                <Label style="-fx-font-size: 15px;" text="Contraseña:" maxWidth="300"/>
+                <PasswordField fx:id="contrasenaField" maxWidth="300"/>
+            </VBox>
+
             <Button prefWidth="300" style="-fx-font-size: 15px;" text="Iniciar sesión" onAction="#iniciarSesion" />
             <Label fx:id="mensajeError" textFill="red" />
         </VBox>
+
+
     </children>
 </StackPane>

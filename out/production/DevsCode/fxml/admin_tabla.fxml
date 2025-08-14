@@ -13,7 +13,7 @@
             xmlns:fx="http://javafx.com/fxml"
             stylesheets="@../css/admin_dashboard.css"
             fx:controller="controller.AdminTablaController"
-            prefHeight="900" prefWidth="1400" maxWidth="1400">
+            prefHeight="900" prefWidth="1450" maxWidth="1450">
 
     <!-- Lado izquierdo: TextField y Botón en horizontal -->
 
@@ -23,8 +23,7 @@
         <VBox alignment="TOP_CENTER" spacing="20" prefWidth="1200">
             <!-- Barra de búsqueda centrada -->
             <HBox spacing="10" alignment="TOP_LEFT" style="-fx-padding: 0 0 0 10;">
-                <TextField fx:id="txtBuscar" prefWidth="450" style="-fx-font-size: 15px;" promptText="Buscar objeto"/>
-                <Button id="boton" text="Buscar" style="-fx-font-size: 15px;" onAction="#buscar"/>
+                <TextField fx:id="txtBuscar" prefWidth="500" style="-fx-font-size: 15px;" promptText="Buscar objeto"/>
             </HBox>
 
             <!-- Tabla centrada -->

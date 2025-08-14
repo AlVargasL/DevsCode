@@ -6,7 +6,7 @@
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="controller.HistorialController"
             stylesheets="@../css/historial.css"
-            prefWidth="1400" prefHeight="900" maxWidth="1400">
+            prefWidth="1450" prefHeight="900" maxWidth="1450">
 
     <center>
         <TableView maxHeight="600" maxWidth="1200" fx:id="tablaHistorial">
