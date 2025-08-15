@@ -6,11 +6,14 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
@@ -124,7 +127,7 @@ public class UserViewController {
         });
 
         VBox vbox = new VBox(0, imageView, btnReclamar);
-        vbox.setStyle("-fx-background-color: white; -fx-padding: 0px; -fx-alignment: center;");
+        vbox.setStyle("-fx-background-color: #f5f5f5; -fx-padding: 0px; -fx-alignment: center;");
 
         Scene scene = new Scene(vbox);
         modalStage.setScene(scene);
@@ -158,6 +161,8 @@ public class UserViewController {
                     } else {
                         setGraphic(btn);
                         btn.setDisable(false);
+
+                        setAlignment(javafx.geometry.Pos.CENTER);
                     }
                 }
             }
@@ -180,60 +185,67 @@ public class UserViewController {
     }
 
     public void mostrarAvisoPrivacidad(ObjetoPerdido obj) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Aviso de privacidad");
-        alert.setHeaderText(null);
-        alert.setContentText("Garantizamos la seguridad de tus datos. Requerimos tu colaboración honesta para un proceso transparente.");
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setTitle("Aviso de privacidad");
 
-// Cambiar fondo y fuente del diálogo completo
-        alert.getDialogPane().setStyle(
-                "-fx-background-color: #f5f5f5;" +
-                        "-fx-font-family: 'Poppins';" +
-                        "-fx-font-size: 15px;" +
-                        "-fx-text-fill: white;"
+        // Texto del aviso
+        Label lblAviso = new Label(
+                "Garantizamos la seguridad de tus datos.\n" +
+                        "Requerimos tu colaboración honesta para un proceso transparente.\n\n" +
+                        "¿Deseas continuar con el proceso para reclamar el objeto perdido?"
         );
+        lblAviso.setStyle("-fx-font-family: 'Poppins'; -fx-font-size: 15px; -fx-text-fill: black;");
+        lblAviso.setWrapText(true);
 
-// Cambiar botones del Alert
-        ButtonType btnContinuar = new ButtonType("Continuar", ButtonBar.ButtonData.OK_DONE);
-        ButtonType btnCancelar = new ButtonType("Cancelar", ButtonBar.ButtonData.CANCEL_CLOSE);
-        alert.getButtonTypes().setAll(btnContinuar, btnCancelar);
+        // Botones
+        Button btnCancelar = new Button("Cancelar");
+        Button btnContinuar = new Button("Continuar");
 
-// Después de crear el Alert, aplicar estilo a los botones internos
-        Button btnOk = (Button) alert.getDialogPane().lookupButton(btnContinuar);
-        Button btnCancel = (Button) alert.getDialogPane().lookupButton(btnCancelar);
+        String estiloNormalContinuar = "-fx-background-color: #2AAD90; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 15px; -fx-background-radius: 5;";
+        String estiloHoverContinuar = "-fx-background-color: #228F77; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 15px; -fx-background-radius: 5;";
 
-        String estiloNormal = "-fx-background-color: #2AAD90;" +
-                "-fx-text-fill: white;" +
-                "-fx-font-weight: bold;" +
-                "-fx-font-size: 15px;" +
-                "-fx-background-radius: 5;" +
-                "-fx-cursor: hand;";
+        String estiloNormalCancelar = "-fx-background-color: #b81414; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 15px; -fx-background-radius: 5;";
+        String estiloHoverCancelar = "-fx-background-color: #861d1d; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 15px; -fx-background-radius: 5;";
 
-        String estiloHover = "-fx-background-color: #228F77;" +
-                "-fx-text-fill: white;" +
-                "-fx-font-weight: bold;" +
-                "-fx-font-size: 15px;" +
-                "-fx-background-radius: 5;" +
-                "-fx-cursor: hand;";
+        btnContinuar.setStyle(estiloNormalContinuar);
+        btnCancelar.setStyle(estiloNormalCancelar);
 
-        btnOk.setStyle(estiloNormal);
-        btnCancel.setStyle(estiloNormal);
+        // Aplica cursor manualmente
+        btnContinuar.setCursor(Cursor.HAND);
+        btnCancelar.setCursor(Cursor.HAND);
 
-        btnOk.hoverProperty().addListener((obs, wasHovered, isHovered) -> {
-            btnOk.setStyle(isHovered ? estiloHover : estiloNormal);
-        });
-        btnCancel.hoverProperty().addListener((obs, wasHovered, isHovered) -> {
-            btnCancel.setStyle(isHovered ? estiloHover : estiloNormal);
-        });
+        // Eventos hover
+        btnContinuar.setOnMouseEntered(e -> btnContinuar.setStyle(estiloHoverContinuar));
+        btnContinuar.setOnMouseExited(e -> btnContinuar.setStyle(estiloNormalContinuar));
 
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.isPresent() && result.get() == btnContinuar) {
+        btnCancelar.setOnMouseEntered(e -> btnCancelar.setStyle(estiloHoverCancelar));
+        btnCancelar.setOnMouseExited(e -> btnCancelar.setStyle(estiloNormalCancelar));
+
+        btnContinuar.setOnAction(e -> {
+            stage.close();
             mostrarAvisoSeguimiento(obj);
-        }
+        });
+
+        btnCancelar.setOnAction(e -> stage.close());
+
+        HBox botones = new HBox(10, btnCancelar, btnContinuar);
+        botones.setAlignment(Pos.CENTER); // Asegura que estén centrados
+
+        VBox vbox = new VBox(20, lblAviso, botones);
+        vbox.setStyle("-fx-padding: 20px; -fx-background-color: #f5f5f5;");
+        vbox.setAlignment(Pos.CENTER);
+
+        Scene scene = new Scene(vbox);
+        stage.setScene(scene);
+        stage.show();
+
+        // Esto asegura que el cursor y hover funcionen correctamente después de agregarlos a la escena
+        btnContinuar.applyCss();
+        btnCancelar.applyCss();
     }
 
-
-        private void marcarComoReclamado(int idObjeto) {
+    private void marcarComoReclamado(int idObjeto) {
         try (Connection conn = DBUtil.getConnection()) {
             String sql = "UPDATE OBJETO_PERDIDO SET ESTADO='Reclamado' WHERE ID=" + idObjeto;
             Statement stmt = conn.createStatement();
@@ -245,58 +257,60 @@ public class UserViewController {
 
 
     public void mostrarAvisoSeguimiento(ObjetoPerdido obj) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Objeto ubicado");
-        alert.setHeaderText(null);
-        alert.setContentText(
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setTitle("Objeto ubicado");
+
+        // Texto del aviso
+        Label lblAviso = new Label(
                 "Te informamos que el objeto que reclamaste ha sido ubicado y está disponible para su entrega.\n\n" +
                         "Puedes pasar a recogerlo en el siguiente horario:\n" +
                         "📍 Lugar: Rectoria en atención a alumnos\n" +
                         "🕒 Horario de atención: Lunes a Viernes de 8:00 a.m a 3:00 p.m"
-                );
-
-        alert.getDialogPane().setStyle(
-                "-fx-background-color: #f5f5f5;" +
-                        "-fx-font-family: 'Arial';" +
-                        "-fx-font-size: 15px;" +
-                        "-fx-text-fill: white;"
         );
+        lblAviso.setStyle("-fx-font-family: 'Arial'; -fx-font-size: 15px; -fx-text-fill: black;");
+        lblAviso.setWrapText(true);
 
-        ButtonType btnContinuar = new ButtonType("Continuar", ButtonBar.ButtonData.OK_DONE);
-        alert.getButtonTypes().setAll(btnContinuar);
-
-        Button btnOk = (Button) alert.getDialogPane().lookupButton(btnContinuar);
-
+        // Botón Continuar
+        Button btnContinuar = new Button("Continuar");
         String estiloNormal = "-fx-background-color: #2AAD90;" +
                 "-fx-text-fill: white;" +
                 "-fx-font-weight: bold;" +
                 "-fx-font-size: 15px;" +
-                "-fx-background-radius: 5;" +
-                "-fx-cursor: hand;";
-
+                "-fx-background-radius: 5;";
         String estiloHover = "-fx-background-color: #228F77;" +
                 "-fx-text-fill: white;" +
                 "-fx-font-weight: bold;" +
                 "-fx-font-size: 15px;" +
-                "-fx-background-radius: 5;" +
-                "-fx-cursor: hand;";
+                "-fx-background-radius: 5;";
 
-        btnOk.setStyle(estiloNormal);
+        btnContinuar.setStyle(estiloNormal);
+        btnContinuar.setCursor(Cursor.HAND);
 
-        btnOk.hoverProperty().addListener((obs, wasHovered, isHovered) -> {
-            btnOk.setStyle(isHovered ? estiloHover : estiloNormal);
-        });
+        // Hover funcional
+        btnContinuar.setOnMouseEntered(e -> btnContinuar.setStyle(estiloHover));
+        btnContinuar.setOnMouseExited(e -> btnContinuar.setStyle(estiloNormal));
 
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.isPresent() && result.get() == btnContinuar) {
-            alert.close();
-        }
+        btnContinuar.setOnAction(e -> stage.close());
 
+        HBox hBoxBotones = new HBox(btnContinuar);
+        hBoxBotones.setAlignment(Pos.CENTER);
+
+        VBox vbox = new VBox(20, lblAviso, hBoxBotones);
+        vbox.setStyle("-fx-padding: 20px; -fx-background-color: #f5f5f5;");
+        vbox.setAlignment(Pos.CENTER);
+
+        Scene scene = new Scene(vbox);
+        stage.setScene(scene);
+        stage.showAndWait();
+
+        // Mantener la lógica de marcar como reclamado
         obj.setEstado("Reclamado");
         marcarComoReclamado(obj.getId());
         insertarHistorial(obj.getId(), "Reclamado");
         tablaObjetos.refresh();
     }
+
 
     private void cargarDatos() {
         listaObjetos.clear();

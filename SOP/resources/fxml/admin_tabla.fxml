@@ -17,7 +17,6 @@
 
     <!-- Lado izquierdo: TextField y Botón en horizontal -->
 
-
     <!-- Centro: Tabla centrada abajo -->
     <center>
         <VBox alignment="TOP_CENTER" spacing="20" prefWidth="1200">
@@ -40,6 +39,5 @@
             </TableView>
         </VBox>
     </center>
-
 
 </BorderPane>

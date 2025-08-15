@@ -37,6 +37,7 @@ public class HistorialController {
         colFecha.setCellValueFactory(new PropertyValueFactory<>("fecha"));
 
         // Cargar datos del historial
+
         cargarHistorial();
     }
 
@@ -45,8 +46,10 @@ public class HistorialController {
 
         try (Connection conn = DBUtil.getConnection()) {
             String sql = "SELECT nombre, marca, color, accion, fecha FROM historial ORDER BY fecha DESC";
+
             PreparedStatement stmt = conn.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery();
+            System.out.println(rs);
 
             // Formato que quieres mostrar
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");

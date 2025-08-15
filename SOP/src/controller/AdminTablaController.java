@@ -7,6 +7,8 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -14,6 +16,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.ObjetoPerdido;
@@ -113,7 +116,12 @@ public class AdminTablaController {
                 if (empty) {
                     setGraphic(null);
                 } else {
-                    setGraphic(new HBox(5, btnEditar, btnEliminar));
+                    HBox hbox = new HBox(5, btnEditar, btnEliminar);
+                    hbox.setAlignment(javafx.geometry.Pos.CENTER); // <-- centramos los botones dentro del HBox
+                    setGraphic(hbox);
+
+                    // Centramos el HBox dentro de la celda
+                    setAlignment(javafx.geometry.Pos.CENTER);
                 }
             }
         });
@@ -164,64 +172,128 @@ public class AdminTablaController {
 
 
     private void eliminarObjeto(int id) {
-        // 1. Crear alerta de confirmación
-        Alert confirmacion = new Alert(Alert.AlertType.CONFIRMATION);
-        confirmacion.setTitle(null);
-        confirmacion.setHeaderText(null);
-        confirmacion.setContentText("¿Deseas eliminar este objeto?");
+        Stage stageConfirm = new Stage();
+        stageConfirm.setTitle("Confirmación");
 
-        ButtonType botonContinuar = new ButtonType("Continuar", ButtonBar.ButtonData.OK_DONE);
-        ButtonType botonCancelar = new ButtonType("Cancelar", ButtonBar.ButtonData.CANCEL_CLOSE);
-        confirmacion.getButtonTypes().setAll(botonContinuar, botonCancelar);
+        Label label = new Label("¿Deseas eliminar este objeto?");
+        label.setStyle("-fx-font-size: 15px; -fx-font-family: 'Poppins';");
 
-        // 2. Esperar la respuesta del usuario
-        confirmacion.showAndWait().ifPresent(respuesta -> {
-            if (respuesta == botonContinuar) {
-                // Si elige continuar, se ejecuta la eliminación
-                try (Connection conn = DBUtil.getConnection()) {
-                    conn.setAutoCommit(false);
+        Button btnCancelar = new Button("Cancelar");
+        Button btnContinuar = new Button("Continuar");
 
-                    // Obtener datos del objeto
-                    PreparedStatement obtener = conn.prepareStatement(
-                            "SELECT nombre, marca, color FROM objeto_perdido WHERE id = ?"
-                    );
-                    obtener.setInt(1, id);
-                    ResultSet rs = obtener.executeQuery();
+        String estiloNormalContinuar = "-fx-background-color: #2AAD90; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 15px; -fx-background-radius: 5;";
+        String estiloHoverContinuar = "-fx-background-color: #228F77; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 15px; -fx-background-radius: 5;";
 
-                    String nombre = "", marca = "", color = "";
-                    if (rs.next()) {
-                        nombre = rs.getString("nombre");
-                        marca = rs.getString("marca");
-                        color = rs.getString("color");
-                    }
+        String estiloNormalCancelar = "-fx-background-color: #b81414; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 15px; -fx-background-radius: 5;";
+        String estiloHoverCancelar = "-fx-background-color: #861d1d; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 15px; -fx-background-radius: 5;";
 
-                    // Cambiar estado a eliminado
-                    PreparedStatement marcarEliminado = conn.prepareStatement(
-                            "UPDATE objeto_perdido SET estado = 'ELIMINADO' WHERE id = ?"
-                    );
-                    marcarEliminado.setInt(1, id);
-                    marcarEliminado.executeUpdate();
+        btnContinuar.setStyle(estiloNormalContinuar);
+        btnCancelar.setStyle(estiloNormalCancelar);
 
-                    // Registrar en historial
-                    registrarHistorial(id, nombre, marca, color, "Eliminado");
+        btnContinuar.setCursor(Cursor.HAND);
+        btnCancelar.setCursor(Cursor.HAND);
 
-                    conn.commit();
-                    cargarDatos(); // Refrescar tabla
+        btnContinuar.setOnMouseEntered(e -> btnContinuar.setStyle(estiloHoverContinuar));
+        btnContinuar.setOnMouseExited(e -> btnContinuar.setStyle(estiloNormalContinuar));
 
-                    // Mostrar mensaje de éxito
-                    Alert exito = new Alert(Alert.AlertType.INFORMATION);
-                    exito.setTitle(null);
-                    exito.setHeaderText(null);
-                    exito.setContentText("El objeto se eliminó exitosamente.");
-                    exito.showAndWait();
+        btnCancelar.setOnMouseEntered(e -> btnCancelar.setStyle(estiloHoverCancelar));
+        btnCancelar.setOnMouseExited(e -> btnCancelar.setStyle(estiloNormalCancelar));
 
-                } catch (Exception e) {
-                    e.printStackTrace();
+        HBox hbox = new HBox(10, btnCancelar, btnContinuar);
+        hbox.setAlignment(Pos.CENTER);
+
+        VBox root = new VBox(20, label, hbox);
+        root.setAlignment(Pos.CENTER);
+        root.setStyle("-fx-padding: 20; -fx-background-color: #f5f5f5; -fx-font-size: 15px; -fx-font-family: 'Poppins';");
+
+        stageConfirm.setScene(new Scene(root, 350, 150));
+        stageConfirm.initModality(Modality.APPLICATION_MODAL);
+
+        btnContinuar.setOnAction(ev -> {
+            try (Connection conn = DBUtil.getConnection()) {
+                conn.setAutoCommit(false);
+
+                PreparedStatement obtener = conn.prepareStatement(
+                        "SELECT nombre, marca, color FROM objeto_perdido WHERE id = ?"
+                );
+                obtener.setInt(1, id);
+                ResultSet rs = obtener.executeQuery();
+
+                String nombre = "", marca = "", color = "";
+                if (rs.next()) {
+                    nombre = rs.getString("nombre");
+                    marca = rs.getString("marca");
+                    color = rs.getString("color");
                 }
+
+                PreparedStatement marcarEliminado = conn.prepareStatement(
+                        "UPDATE objeto_perdido SET estado = 'ELIMINADO' WHERE id = ?"
+                );
+                marcarEliminado.setInt(1, id);
+                marcarEliminado.executeUpdate();
+
+                registrarHistorial(id, nombre, marca, color, "Eliminado");
+
+                conn.commit();
+                cargarDatos();
+                stageConfirm.close();
+
+                // ✅ Mostrar Stage de éxito dentro de Platform.runLater
+                javafx.application.Platform.runLater(() -> {
+                    Stage stageExito = new Stage();
+                    stageExito.setTitle("Éxito");
+
+                    Label exitoLabel = new Label("El objeto se eliminó exitosamente.");
+                    exitoLabel.setStyle("-fx-font-size: 15px; -fx-font-family: 'Poppins';");
+
+                    Button btnCerrar = new Button("Continuar");
+                    btnCerrar.setStyle("-fx-background-color: #2AAD90; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 15px; -fx-background-radius: 5;");
+                    btnCerrar.setCursor(Cursor.HAND);
+
+                    btnCerrar.setOnMouseEntered(e -> btnCerrar.setStyle("-fx-background-color: #228F77; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 15px; -fx-background-radius: 5;"));
+                    btnCerrar.setOnMouseExited(e -> btnCerrar.setStyle("-fx-background-color: #2AAD90; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 15px; -fx-background-radius: 5;"));
+
+                    btnCerrar.setOnAction(e -> stageExito.close());
+
+                    VBox rootExito = new VBox(20, exitoLabel, btnCerrar);
+                    rootExito.setAlignment(Pos.CENTER);
+                    rootExito.setStyle("-fx-padding: 20; -fx-background-color: #f5f5f5; -fx-font-size: 15px; -fx-font-family: 'Poppins';");
+
+                    Scene sceneExito = new Scene(rootExito, 350, 150);
+                    stageExito.setScene(sceneExito);
+                    stageExito.initModality(Modality.APPLICATION_MODAL);
+                    stageExito.showAndWait();
+                });
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                mostrarMensaje("Error al eliminar el objeto.", "#f5f5f5");
             }
-            // Si elige cancelar, no pasa nada (sale del método)
         });
+
+        btnCancelar.setOnAction(ev -> stageConfirm.close());
+        stageConfirm.showAndWait();
     }
+
+    // Método reusable para mostrar mensajes con botón Continuar
+    private void mostrarMensaje(String mensaje, String colorFondo) {
+        Stage stage = new Stage();
+        stage.setTitle("Información");
+
+        Label label = new Label(mensaje);
+        label.setStyle("-fx-text-fill: white; -fx-font-size: 14px;");
+
+        Button btn = new Button("Continuar");
+        btn.setOnAction(e -> stage.close());
+
+        VBox root = new VBox(15, label, btn);
+        root.setStyle("-fx-background-color: " + colorFondo + "; -fx-padding: 20; -fx-alignment: center;");
+
+        stage.setScene(new Scene(root, 350, 150));
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.showAndWait();
+    }
+
 
     private void registrarHistorial(int objetoId, String nombre, String marca, String color, String accion) {
         try (Connection conn = DBUtil.getConnection()) {
@@ -236,10 +308,5 @@ public class AdminTablaController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    @FXML
-    private void buscar() {
-
     }
 }

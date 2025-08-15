@@ -6,6 +6,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import model.ObjetoPerdido;
 import util.DBUtil;
@@ -24,6 +26,10 @@ public class FormularioEditarController {
     @FXML private TextField campoDescripcion;
     @FXML private ComboBox<String> estadoCombo;
     @FXML private Label mensajeLabel;
+    @FXML
+    private ImageView imagenView;
+
+    private String rutaImagen; // Guarda la ruta actual o nueva
 
     private ObjetoPerdido objeto;
 
@@ -39,6 +45,11 @@ public class FormularioEditarController {
         campoColor.setText(objeto.getColor());
         campoDescripcion.setText(objeto.getDescripcion());
 
+        rutaImagen = objeto.getImagen(); // ruta guardada en el objeto
+        if (rutaImagen != null && !rutaImagen.isEmpty()) {
+            imagenView.setImage(new Image("file:" + rutaImagen));
+        }
+
         // Asignamos las opciones al ComboBox
         estadoCombo.setItems(estados);
 
@@ -47,10 +58,25 @@ public class FormularioEditarController {
     }
 
     @FXML
+    private void cambiarImagen() {
+        javafx.stage.FileChooser fileChooser = new javafx.stage.FileChooser();
+        fileChooser.setTitle("Seleccionar nueva imagen");
+        fileChooser.getExtensionFilters().addAll(
+                new javafx.stage.FileChooser.ExtensionFilter("Imágenes", "*.png", "*.jpg", "*.jpeg", "*.gif")
+        );
+
+        java.io.File archivo = fileChooser.showOpenDialog(campoNombre.getScene().getWindow());
+        if (archivo != null) {
+            rutaImagen = archivo.getAbsolutePath();
+            imagenView.setImage(new javafx.scene.image.Image("file:" + rutaImagen));
+        }
+    }
+
+    @FXML
     private void guardarCambios() {
 
         try (Connection conn = DBUtil.getConnection()) {
-            String sql = "UPDATE objeto_perdido SET nombre = ?, marca = ?, color = ?, descripcion = ?, estado = ? WHERE id = ?";
+            String sql = "UPDATE objeto_perdido SET nombre = ?, marca = ?, color = ?, descripcion = ?, estado = ?, imagen = ? WHERE id = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, campoNombre.getText());
             stmt.setString(2, campoMarca.getText());
@@ -60,8 +86,9 @@ public class FormularioEditarController {
             // Aquí enviamos solo el estado seleccionado
             String estadoSeleccionado = estadoCombo.getSelectionModel().getSelectedItem();
             stmt.setString(5, estadoSeleccionado);
+            stmt.setString(6, rutaImagen);
 
-            stmt.setInt(6, objeto.getId());
+            stmt.setInt(7, objeto.getId());
             stmt.executeUpdate();
 
             // Registrar en historial
