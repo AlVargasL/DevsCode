@@ -14,10 +14,7 @@
     <top>
         <VBox spacing="10" alignment="CENTER_LEFT" styleClass="top-bar">
             <Label text="Objetos Perdidos | Administrador" style="-fx-font-size: 30px;" styleClass="titulo-principal"/>
-            <HBox spacing="10" alignment="CENTER_RIGHT">
-                <padding>
-                    <Insets top="10" right="10" bottom="10" left="10"/>
-                </padding>
+            <HBox alignment="CENTER_RIGHT">
                 <Region HBox.hgrow="ALWAYS"/>
                 <Button id="boton" style="-fx-font-size: 20px;" text="Cerrar sesión" onAction="#irLogout"/>
             </HBox>

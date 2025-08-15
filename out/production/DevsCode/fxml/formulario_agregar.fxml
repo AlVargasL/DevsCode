@@ -20,7 +20,7 @@
                 <padding>
                     <Insets left="0"/>
                 </padding>
-                <Label style="-fx-font-size: 15px;" text="Nombre:" maxWidth="300"/>
+                <Label style="-fx-font-size: 15px; -fx-font-family: 'Poppins'; -fx-font-weight: bold;" text="Nombre:" maxWidth="300"/>
                 <TextField fx:id="nombreField" prefWidth="300"/>
             </VBox>
 
@@ -28,7 +28,7 @@
                 <padding>
                     <Insets left="0"/>
                 </padding>
-                <Label style="-fx-font-size: 15px;" text="Marca:" maxWidth="300"/>
+                <Label style="-fx-font-size: 15px; -fx-font-family: 'Poppins'; -fx-font-weight: bold;" text="Marca:" maxWidth="300"/>
                 <TextField fx:id="marcaField" prefWidth="300"/>
             </VBox>
 
@@ -36,7 +36,7 @@
                 <padding>
                     <Insets left="0"/>
                 </padding>
-                <Label style="-fx-font-size: 15px;" text="Color:" maxWidth="300"/>
+                <Label style="-fx-font-size: 15px; -fx-font-family: 'Poppins'; -fx-font-weight: bold;" text="Color:" maxWidth="300"/>
                 <TextField fx:id="colorField" prefWidth="300"/>
             </VBox>
 
@@ -44,7 +44,7 @@
                 <padding>
                     <Insets left="0"/>
                 </padding>
-                <Label style="-fx-font-size: 15px;" text="Descripción:" maxWidth="300"/>
+                <Label style="-fx-font-size: 15px; -fx-font-family: 'Poppins'; -fx-font-weight: bold;" text="Descripción:" maxWidth="300"/>
                 <TextField fx:id="descripcionField" prefWidth="300"/>
             </VBox>
 

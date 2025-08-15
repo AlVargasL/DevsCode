@@ -7,9 +7,10 @@
 
 <?import javafx.collections.FXCollections?>
 <?import java.lang.String?>
+<?import javafx.scene.image.ImageView?>
 <StackPane xmlns:fx="http://javafx.com/fxml" fx:controller="controller.FormularioEditarController"
            stylesheets="@../css/formulario_editar.css"
-           prefWidth="700" prefHeight="500" maxWidth="700">
+           prefWidth="400" prefHeight="400" maxWidth="400">
 
     <children>
         <VBox spacing="15" alignment="CENTER" maxWidth="400" maxHeight="400" styleClass="login-box">
@@ -19,10 +20,37 @@
 
             <Label text="Editar Objeto" style="-fx-font-size: 25px;" styleClass="titulo-principal" />
 
-            <TextField fx:id="campoNombre" prefWidth="300" promptText="Nombre"/>
-            <TextField fx:id="campoMarca" prefWidth="300" promptText="Marca"/>
-            <TextField fx:id="campoColor" prefWidth="300" promptText="Color"/>
-            <TextField fx:id="campoDescripcion" prefWidth="300" promptText="Descripción"/>
+            <VBox>
+                <padding>
+                    <Insets left="0"/>
+                </padding>
+                <Label style="-fx-font-size: 15px; -fx-font-family: 'Poppins'; -fx-font-weight: bold;" text="Nombre:" maxWidth="300"/>
+                <TextField fx:id="campoNombre" prefWidth="300"/>
+            </VBox>
+
+            <VBox>
+                <padding>
+                    <Insets left="0"/>
+                </padding>
+                <Label style="-fx-font-size: 15px; -fx-font-family: 'Poppins'; -fx-font-weight: bold;" text="Marca:" maxWidth="300"/>
+                <TextField fx:id="campoMarca" prefWidth="300"/>
+            </VBox>
+
+            <VBox>
+                <padding>
+                    <Insets left="0"/>
+                </padding>
+                <Label style="-fx-font-size: 15px; -fx-font-family: 'Poppins'; -fx-font-weight: bold;" text="Color:" maxWidth="300"/>
+                <TextField fx:id="campoColor" prefWidth="300"/>
+            </VBox>
+
+            <VBox>
+                <padding>
+                    <Insets left="0"/>
+                </padding>
+                <Label style="-fx-font-size: 15px; -fx-font-family: 'Poppins'; -fx-font-weight: bold;" text="Descripción:" maxWidth="300"/>
+                <TextField fx:id="campoDescripcion" prefWidth="300"/>
+            </VBox>
 
             <ComboBox fx:id="estadoCombo" prefWidth="350">
                 <items>
@@ -34,6 +62,10 @@
                     </FXCollections>
                 </items>
             </ComboBox>
+
+            <ImageView fx:id="imagenView" fitWidth="150" fitHeight="150" preserveRatio="true"/>
+            <Button text="Cambiar Imagen" onAction="#cambiarImagen" style="-fx-font-size: 15px;"/>
+
 
             <HBox spacing="15" alignment="CENTER">
                 <Button text="Guardar cambios" style="-fx-font-size: 15px;" onAction="#guardarCambios"/>

@@ -90,3 +90,8 @@
     -fx-background-color: #002147;
     -fx-background-radius: 0 10px 0 0;
 }
+
+.table-view .column-header,
+.table-view .cell {
+    -fx-alignment: CENTER; /* Centra tanto el encabezado como las celdas */
+}

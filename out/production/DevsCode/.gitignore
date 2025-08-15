@@ -1,29 +1,44 @@
-### IntelliJ IDEA ###
-out/
-!**/src/main/**/out/
-!**/src/test/**/out/
+# =====================
+# Archivos compilados
+# =====================
+*.class
+/out/
+/bin/
+/build/
 
-### Eclipse ###
+# =====================
+# Configuración de IntelliJ IDEA
+# =====================
+.idea/
+*.iml
+
+# =====================
+# Configuración de Eclipse
+# =====================
 .apt_generated
 .classpath
 .factorypath
 .project
-.settings
+.settings/
 .springBeans
 .sts4-cache
-bin/
-!**/src/main/**/bin/
-!**/src/test/**/bin/
 
-### NetBeans ###
+# =====================
+# Configuración de NetBeans
+# =====================
 /nbproject/private/
 /nbbuild/
 /dist/
 /nbdist/
 /.nb-gradle/
 
-### VS Code ###
+# =====================
+# Configuración de VS Code
+# =====================
 .vscode/
 
-### Mac OS ###
+# =====================
+# Archivos del sistema
+# =====================
 .DS_Store
+Thumbs.db
